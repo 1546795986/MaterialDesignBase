@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--许多Material属
+        性是在新系统中新增的，老系统中并不存在，那么为了能够兼容老系统，我们就不能使用
+        android:attribute这样的写法了，而是应该使用app:attribute-->
+        <!--    app:popupTheme属性，单独将弹出的菜单项指定成了浅色主题-->
+        <!--    让Toolbar单独使用深色主题ThemeOverlay.AppCompat.Dark.ActionBar。-->
+        <!--        app:elevation属性给FloatingActionButton指定一个高度值。-->
+        <!--        CoordinatorLayout可以监听其所有子控件的各种事件，并自动帮助我们做出最为合
+        理的响应-->
+        <!-- AppBarLayout管住Toolbar 然后在rv添加一个app:layout_behavior:appbar_scrolling_view_behavior-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--            这里在Toolbar中添加了一个app:layout_scrollFlags属性，并将这个属性的值指定成了
+            scroll|enterAlways|snap。其中，scroll表示当RecyclerView向上滚动的时候，
+            Toolbar会跟着一起向上滚动并实现隐藏；enterAlways表示当RecyclerView向下滚动的时
+            候，Toolbar会跟着一起向下滚动并重新显示；snap表示当Toolbar还没有完全隐藏或显示的时
+            候，会根据当前滚动的距离，自动选择是隐藏还是显示-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/design_default_color_primary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/swipeRefresh"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_launcher_background"
+            app:elevation="8dp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

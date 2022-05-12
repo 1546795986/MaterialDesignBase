@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    group表示一个组-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navCall"
+
+            android:title="Call" />
+        <item
+            android:id="@+id/navFriends"
+
+            android:title="Friends" />
+        <item
+            android:id="@+id/navLocation"
+
+            android:title="Location" />
+        <item
+            android:id="@+id/navMail"
+
+            android:title="Mail" />
+        <item
+            android:id="@+id/navTask"
+
+            android:title="Tasks" />
+    </group>
+</menu>
